@@ -19,11 +19,10 @@ The upstream `LICENSE` and pre-existing copyright headers are preserved. Modifie
 
 ## Main modification boundaries
 
-- `client/core/src/client.ts`, `api.ts`, `index.ts`, `transport.ts`: injectable REST/socket/transport adapters and a `demo` transport kind. The default path remains REST + WebSocket + WebRTC.
-- `client/src/app/`, `layout/`, `features/`, `plugins/chat/Chat.tsx`, `plugins/filetransfer/`: redesigned shadcn/ui shell and feature surfaces over the existing stores/actions.
+- `client/core/src/client.js`, `api.js`, `index.js`, `transport.d.ts`: JavaScript REST/socket/transport adapters. The default path uses REST + WebSocket + WebRTC.
+- `client/src/app/`, `layout/`, `features/`, `plugins/chat/Chat.jsx`, `plugins/filetransfer/`: redesigned shadcn/ui shell and feature surfaces over the existing stores/actions.
 - `client/src/components/ui/`: source-owned shadcn primitives, pinned to `shadcn-ui/ui` commit `e62c9435fff729a175f38983dee73b2cb4f6a069` (`apps/v4/registry/new-york-v4/ui`). MIT license in `licenses/shadcn-ui.txt`. The point-anchored context menu is a local Radix wrapper.
-- `client/src/demo/`: opt-in local preview adapters and canvas surface. Lazy-loaded only for `?demo=1` or `VITE_DEMO=true`.
-- `client/src/index.css`, `hooks/use-theme.tsx`, branding assets: semantic light/dark tokens and Screen 2 Screen identity.
+- `client/src/index.css`, `hooks/use-theme.jsx`, branding assets: semantic light/dark tokens and Screen 2 Screen identity.
 - `server/build`: downloads the checked-in module sums and builds with `-mod=readonly` instead of upgrading dependencies.
 - Root `Dockerfile`, `docker-compose.yaml`, npm workspaces, Playwright tests, and the CI example in `docs/ci.example.yml`: packaging and verification for this repository. The root lockfile is authoritative; upstream nested lockfiles, standalone client Dockerfile/dev helpers, server dev helpers, and unused legacy branding icons were removed because the workspace/root container build supersedes them.
 

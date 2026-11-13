@@ -1,4 +1,6 @@
-# Screen 2 Screen rebuild plan
+# Screen 2 Screen rebuild plan (historical)
+
+This records the original redesign plan. The demo/preview described below was subsequently removed; see the README for current setup.
 
 ## Direction
 

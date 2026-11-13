@@ -312,7 +312,7 @@ the `NekoEvents` map; the transport seam is `StreamTransport`, `SessionInfo`, `I
 ## Development
 
 ```sh
-npm run build   # tsc -> dist/ (ESM + .d.ts), plus the vendored keyboard library
+npm run build   # copy JavaScript and API declarations to dist/
 npm test        # the unit tests in src/**/*.test.ts (vitest, run from ../ where it is installed): the connection
                 # state machine (handshake, reconnects, timeouts, events, clipboard, auth), the transport seam,
                 # the WebRTC transport, the input channels, the overlay and the store, against the fake browser
@@ -324,5 +324,5 @@ npm run check   # build, the tests, then node dist.check.mjs against the built p
 
 The tests and dist.check.mjs run under Node with a few browser globals stubbed, so the connection state
 machine and the store are tested without a browser. The GUI in `../src` consumes this package from source
-through the `@m1k1o/neko` alias in `../tsconfig.json` and `../vite.config.ts`; consumers of the npm
+through the `@m1k1o/neko` alias in `../jsconfig.json` and `../vite.config.js`; consumers of the npm
 package get `dist/`.

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@m1k1o/neko": ["./core/src/index.js"]
+    },
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules", "dist", "core/dist"]
+}

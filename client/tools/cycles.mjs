@@ -8,7 +8,7 @@ const walk = (d) => {
   for (const f of readdirSync(d)) {
     const p = join(d, f)
     if (statSync(p).isDirectory()) walk(p)
-    else if (/\.tsx?$/.test(f) && !f.endsWith('.test.ts')) files.push(p)
+    else if (/\.jsx?$/.test(f) && !f.includes('.test.')) files.push(p)
   }
 }
 walk(root)
@@ -19,8 +19,8 @@ const resolveImport = (from, spec) => {
   if (spec.startsWith('@/')) base = join(root, spec.slice(2))
   else if (spec.startsWith('.')) base = resolve(dirname(from), spec)
   else return null
-  for (const c of [base, base + '.ts', base + '.tsx', join(base, 'index.ts'), join(base, 'index.tsx')])
-    if (existsSync(c) && statSync(c).isFile() && /\.tsx?$/.test(c)) return c
+  for (const c of [base, base + '.js', base + '.jsx', join(base, 'index.js'), join(base, 'index.jsx')])
+    if (existsSync(c) && statSync(c).isFile() && /\.jsx?$/.test(c)) return c
   return null
 }
 const edges = new Map(

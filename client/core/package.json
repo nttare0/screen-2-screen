@@ -23,15 +23,12 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && node build.mjs",
+    "build": "node build.mjs",
     "test": "npm --prefix .. test -- core/src",
     "check": "npm run build && npm test && node dist.check.mjs"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "typescript": "~5.8.0"
   },
   "dependencies": {
     "zustand": "^5.0.15"

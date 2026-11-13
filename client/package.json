@@ -7,20 +7,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build --workspace=@m1k1o/neko && tsc --noEmit && vite build && node tools/dist.check.mjs",
+    "build": "npm run build --workspace=@m1k1o/neko && vite build && node tools/dist.check.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "node e2e.mjs",
     "format": "prettier --write .",
-    "check": "run-p -l --aggregate-output check:types check:format check:lint check:cycles test && npm run build && node core/dist.check.mjs",
-    "check:types": "tsc --noEmit",
+    "check": "run-p -l --aggregate-output check:format check:lint check:cycles test && npm run build && node core/dist.check.mjs",
     "check:format": "prettier --check .",
     "check:lint": "eslint src core/src",
     "check:cycles": "node tools/cycles.mjs",
     "check:dist": "node core/dist.check.mjs",
-    "build:emoji": "node tools/emoji.ts",
-    "build:core": "npm --prefix core run build",
-    "dev:demo": "vite --mode demo"
+    "build:emoji": "node tools/emoji.mjs",
+    "build:core": "npm --prefix core run build"
   },
   "dependencies": {
     "@radix-ui/react-menu": "^2.1.25",
@@ -50,14 +48,13 @@
     "@vitejs/plugin-react": "^5.0.0",
     "emoji-datasource": "^6.1.1",
     "emojilib": "3.0.8",
-    "eslint": "^10.12.0",
+    "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "npm-run-all2": "^9.0.3",
     "playwright": "^1.63.0",
     "prettier": "^3.9.9",
     "tailwindcss": "^4.3.3",
     "typescript": "~5.8.0",
-    "typescript-eslint": "^8.71.1",
     "vite": "^7.0.0",
     "vitest": "^5.0.3"
   }

@@ -1,6 +1,5 @@
 // The two React hook rules, and the import rules of the layered layout (see README.md): types and
 // formatting are checked by tsc and prettier.
-import tseslint from 'typescript-eslint'
 import reactHooks from 'eslint-plugin-react-hooks'
 
 // Dependencies point one way: app -> layout -> features -> components -> design, with state, i18n
@@ -27,18 +26,10 @@ const not = (...layers) => layers.map((l) => ({ group: [`@/${l}`, `@/${l}/*`], m
 export default [
   { ignores: ['dist', 'core/dist', 'core/src/keyboard/guacamole.js'] },
   {
-    files: ['src/**/*.{ts,tsx}', 'core/src/**/*.ts'],
-    languageOptions: { parser: tseslint.parser },
+    files: ['src/**/*.{js,jsx}', 'core/src/**/*.js'],
+    languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
     plugins: { 'react-hooks': reactHooks },
     rules: { 'react-hooks/rules-of-hooks': 'error', 'react-hooks/exhaustive-deps': 'error' },
-  },
-  {
-    // deprecated APIs fail the lint, type-aware so it costs a few seconds; tests are outside the tsconfigs
-    files: ['src/**/*.{ts,tsx}', 'core/src/**/*.ts'],
-    ignores: ['**/*.test.{ts,tsx}', 'core/src/test/**'],
-    languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } },
-    plugins: { '@typescript-eslint': tseslint.plugin },
-    rules: { '@typescript-eslint/no-deprecated': 'error' },
   },
   { files: ['src/components/**'], rules: only(not('app', 'layout', 'features', 'plugins')) },
   {
@@ -58,5 +49,5 @@ export default [
   },
   { files: ['src/plugins/**'], rules: only(not('app', 'layout', 'features')) },
   { files: ['src/layout/**'], rules: only(not('app')) },
-  { files: ['src/app/**', 'src/main.tsx'], rules: only([]) },
+  { files: ['src/app/**', 'src/main.jsx'], rules: only([]) },
 ]
