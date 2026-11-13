@@ -1,0 +1,24 @@
+services:
+  neko:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEKO_BASE_IMAGE: ghcr.io/m1k1o/neko/firefox:3.2.0
+    image: screen-2-screen:local
+    restart: unless-stopped
+    shm_size: 2gb
+    ports:
+      - '8080:8080'
+      - '52000-52100:52000-52100/udp'
+    environment:
+      NEKO_MEMBER_PROVIDER: multiuser
+      NEKO_WEBRTC_EPR: 52000-52100
+      NEKO_WEBRTC_NAT1TO1: ${NEKO_PUBLIC_IP:?set NEKO_PUBLIC_IP in .env}
+      NEKO_DESKTOP_SCREEN: ${NEKO_SCREEN:-1920x1080@30}
+      NEKO_MEMBER_MULTIUSER_USER_PASSWORD: ${NEKO_USER_PASSWORD:?set NEKO_USER_PASSWORD in .env}
+      NEKO_MEMBER_MULTIUSER_ADMIN_PASSWORD: ${NEKO_ADMIN_PASSWORD:?set NEKO_ADMIN_PASSWORD in .env}
+      NEKO_FILETRANSFER_ENABLED: ${NEKO_FILETRANSFER_ENABLED:-true}
+    # Optional persistent Firefox profile:
+    # volumes:
+    #   - ./profile:/home/neko/.mozilla/firefox/profile.default

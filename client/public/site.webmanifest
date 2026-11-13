@@ -1,0 +1,12 @@
+{
+  "name": "Screen 2 Screen",
+  "short_name": "screen2screen",
+  "description": "A self-hosted shared browser workspace.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#101312",
+  "theme_color": "#101312",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

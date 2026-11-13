@@ -1,0 +1,214 @@
+/* Modified for Screen 2 Screen: semantic shadcn tokens and the shared-screen workspace. */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/manrope';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.75rem;
+  --background: #f5f7f6;
+  --foreground: #1b2420;
+  --card: #ffffff;
+  --card-foreground: #1b2420;
+  --popover: #ffffff;
+  --popover-foreground: #1b2420;
+  --primary: #167a55;
+  --primary-foreground: #ffffff;
+  --secondary: #e8eeeb;
+  --secondary-foreground: #263b31;
+  --muted: #edf1ef;
+  --muted-foreground: #68766e;
+  --accent: #e4eee8;
+  --accent-foreground: #145c40;
+  --destructive: #c43d3d;
+  --border: #dfe6e2;
+  --input: #d8e1dc;
+  --ring: #329b70;
+  --sidebar: #ebf0ed;
+  --sidebar-foreground: #263b31;
+  --stage: #e7ece9;
+  --success: #16845b;
+  --warning: #ad761c;
+}
+
+.dark {
+  --background: #101312;
+  --foreground: #edf2ef;
+  --card: #191e1b;
+  --card-foreground: #edf2ef;
+  --popover: #202722;
+  --popover-foreground: #edf2ef;
+  --primary: #b7f0ce;
+  --primary-foreground: #12291c;
+  --secondary: #252e28;
+  --secondary-foreground: #e2ebe5;
+  --muted: #202722;
+  --muted-foreground: #8e9c93;
+  --accent: #29382f;
+  --accent-foreground: #c6f3d9;
+  --destructive: #ef7770;
+  --border: #2b342e;
+  --input: #343f37;
+  --ring: #8acba5;
+  --sidebar: #161b18;
+  --sidebar-foreground: #dce6df;
+  --stage: #0a0d0b;
+  --success: #8edcaf;
+  --warning: #e4bc72;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-stage: var(--stage);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Compatibility aliases for the reused Neko feature components. */
+  --color-text-normal: var(--foreground);
+  --color-text-muted: var(--muted-foreground);
+  --color-text-link: var(--primary);
+  --color-interactive-normal: var(--muted-foreground);
+  --color-interactive-hover: var(--foreground);
+  --color-interactive-muted: var(--muted-foreground);
+  --color-background-primary: var(--card);
+  --color-background-secondary: var(--muted);
+  --color-background-tertiary: var(--background);
+  --color-background-accent: var(--accent);
+  --color-background-floating: var(--popover);
+  --color-background-modifier-hover: var(--accent);
+  --color-background-modifier-active: var(--secondary);
+  --color-background-modifier-selected: var(--accent);
+  --color-background-modifier-accent: var(--border);
+  --color-style-primary: var(--primary);
+  --color-style-error: var(--destructive);
+  --text-ui: 14px;
+  --spacing-menu: 56px;
+  --spacing-controls: 72px;
+  --spacing-side: 340px;
+  --animate-shake: shake 0.7s ease-in-out;
+  --animate-loader: loader 1.6s infinite ease-in-out;
+  --animate-badge: badge 2s infinite;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-3px);
+    }
+    40%,
+    80% {
+      transform: translateX(3px);
+    }
+  }
+  @keyframes loader {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.85);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes badge {
+    0%,
+    100% {
+      opacity: 0.65;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--input) transparent;
+  }
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+  }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility workspace-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--input) transparent;
+  overscroll-behavior: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
