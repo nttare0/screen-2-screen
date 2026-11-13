@@ -30,4 +30,4 @@ The sandbox has no Go toolchain or Docker daemon, so these were not executed her
 - `docker compose up`
 - the upstream two-user live-server/WebRTC smoke test (`client/e2e.mjs`)
 
-CI is configured to run the client checks, Playwright suite, and container build. A real deployment is still required to verify WebRTC media, remote input, microphone, clipboard, and the KDE/X typing step against the upstream runtime.
+A ready-to-enable CI workflow is included at `docs/ci.example.yml` for the client checks, Playwright suite, and container build. A real deployment is still required to verify WebRTC media, remote input, microphone, clipboard, and the KDE/X typing step against the upstream runtime.
