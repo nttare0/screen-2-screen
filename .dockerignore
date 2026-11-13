@@ -1,0 +1,15 @@
+.git
+node_modules
+**/node_modules
+client/dist
+client/core/dist
+server/bin
+test-results
+playwright-report
+coverage
+e2e-out
+profile
+.env
+.env.local
+.env.*.local
+*.log

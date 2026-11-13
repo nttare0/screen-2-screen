@@ -1,0 +1,28 @@
+{
+  "name": "screen-2-screen",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "client/core"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=screen-2-screen-client",
+    "dev:demo": "npm run dev:demo --workspace=screen-2-screen-client",
+    "build": "npm run build --workspace=screen-2-screen-client",
+    "preview": "npm run preview --workspace=screen-2-screen-client",
+    "test": "npm run test --workspace=screen-2-screen-client",
+    "typecheck": "npm run check:types --workspace=screen-2-screen-client",
+    "lint": "npm run check:lint --workspace=screen-2-screen-client",
+    "format": "npm run format --workspace=screen-2-screen-client",
+    "check": "npm run check --workspace=screen-2-screen-client",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
